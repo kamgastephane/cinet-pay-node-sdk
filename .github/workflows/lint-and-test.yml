@@ -8,7 +8,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        nodejs: [10, 12, 14]
+        nodejs: [12, 14]
 
     steps:
     - uses: actions/checkout@v2
@@ -18,8 +18,8 @@ jobs:
       with:
         node-version: ${{ matrix.nodejs }}
 
-    - run: yarn install
-    - run: yarn add -D esbuild
-    - run: yarn test
-    - run: yarn lint
-    - run: yarn build-all
+    - run: npm install
+    - run: npm add -D esbuild
+    - run: npm test
+    - run: npm run-script lint
+    - run: npm run-script build-all
