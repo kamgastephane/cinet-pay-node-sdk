@@ -20,8 +20,6 @@ export namespace payment {
   }
 
   export interface Check {
-    apikey: string;
-    site_id: string;
     transaction_id: string;
 
   }

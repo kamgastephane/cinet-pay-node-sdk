@@ -9,6 +9,9 @@ export const validateRequest = (request: payment.Request): void=> {
   if (!request.amount) {
     throw new IllegalArgumentError('amount', request.amount?request.amount.toString():"undefined")
   }
+  if (request.amount<100) {
+    throw new IllegalArgumentError('amount', "< 100")
+  }
   if (!request.currency || currencies.indexOf(request.currency) == -1) {
     throw new IllegalArgumentError('currency', request.currency?request.currency.toString():"undefined")
   }

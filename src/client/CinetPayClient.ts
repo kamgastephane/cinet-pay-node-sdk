@@ -22,7 +22,7 @@ export class CinetPayClient extends HttpClient{
       apikey: this.config.apikey,
       site_id: this.config.site_id
     };
-    return await this.instance.post<payment.Response, payment.Response>(`${this.config.baseUrl}/payment`, payload);
+    return await this.instance.post<payment.Response, payment.Response>(`${this.config.baseUrl}/v2/payment`, payload);
   }
 
   /**
@@ -37,7 +37,7 @@ export class CinetPayClient extends HttpClient{
       apikey: this.config.apikey,
       site_id: this.config.site_id
     };
-    return await this.instance.post<payment.Payment, payment.Payment>(`${this.config.baseUrl}/payment/check`, payload);
+    return await this.instance.post<payment.Payment, payment.Payment>(`${this.config.baseUrl}/v2/payment/check`, payload);
   }
 
 

@@ -1,25 +1,19 @@
-name: Lint and test
+name: Publish
 
-on: [push, pull_request]
+on:
+  release:
+    types: [published]
 
 jobs:
-  build_and_test:
+  build:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        nodejs: [12, 14]
-
     steps:
-    - uses: actions/checkout@v2
-
-    # https://github.com/actions/setup-node
-    - uses: actions/setup-node@v2-beta
-      with:
-        node-version: ${{ matrix.nodejs }}
-
-    - run: npm install
-    - run: npm add -D esbuild
-    - run: npm test
-    - run: npm run-script lint
-    - run: npm run-script build-all
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://registry.npmjs.org/
+      - run: yarn install
+      - run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
