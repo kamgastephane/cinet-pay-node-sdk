@@ -1,4 +1,4 @@
-name: Lint and test
+name: publish
 
 on: [push, pull_request]
 
@@ -12,9 +12,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-
-    # https://github.com/actions/setup-node
-    - uses: actions/setup-node@v2-beta
+    - uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.nodejs }}
 
@@ -23,3 +21,18 @@ jobs:
     - run: npm test
     - run: npm run-script lint
     - run: npm run-script build-all
+
+  publish:
+    needs: build_and_test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+          registry-url: https://registry.npmjs.org/
+      - run: npm install
+      - run: npm run-script build-all && npm run-script postbuild
+      - run: npm publish dist --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
