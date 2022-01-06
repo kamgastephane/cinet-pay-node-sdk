@@ -1,6 +1,6 @@
 {
   "name": "@easets/cinet-pay-node-sdk",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "CinetPay SDK for NodeJS",
   "author": "Stephane Kamga <kamga.stephane@gmail.com>",
   "repository": {
@@ -14,9 +14,9 @@
     "node",
     "sdk"
   ],
-  "files": ["*"],
-  "main": "./dist/tsc/main.js",
-  "types": "./dist/tsc/main.d.ts",
+  "files": ["dist"],
+  "main": "./dist/cjs/index.js",
+  "types": "./dist/cjs/index.d.ts",
   "scripts": {
     "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx",
     "test": "jest",
