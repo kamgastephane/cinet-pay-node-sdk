@@ -14,6 +14,7 @@
     "node",
     "sdk"
   ],
+  "files": ["*"],
   "main": "./dist/tsc/main.js",
   "types": "./dist/tsc/main.d.ts",
   "scripts": {
