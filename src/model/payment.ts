@@ -16,7 +16,7 @@ export namespace payment {
     return_url: string;
     channels: Channel,
     lang?: 'en' | 'fr',
-    metadata?: string
+    metadata?: string,
   }
 
   export interface Check {
@@ -28,7 +28,13 @@ export namespace payment {
     customer_name: string;
     customer_surname: string
     customer_id?: string
-    // additional fields can be passed here.
+    customer_phone_number: string;
+    customer_email: string;
+    customer_address: string;
+    customer_city: string;
+    customer_country: string;
+    customer_state?: string;
+    customer_zip_code: string;
   }
 
 
